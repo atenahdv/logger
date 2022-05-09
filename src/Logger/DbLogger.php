@@ -6,13 +6,14 @@ use App\DB\Database;
 
 class DbLogger implements Logger
 {
+    protected $database;
+    public function __construct(Database $database) {
+        $this->database = $database;
+    }
 
     public function log(string $data){
-     
-      $database = new Database("localhost", "root", "", "log");
       $query = "INSERT INTO log (data, created_at) VALUES ($data, date('Y-m-d H:i:s'));";
-      $database->query($query);
-      var_dump($database);die();
+      $this->database->query($query);
 
     }
 }

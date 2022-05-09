@@ -7,7 +7,9 @@ final class DbLoggerTest extends TestCase
 {
     public function testLogToDb()
     {
-        $logger=new \App\Logger\DbLogger();
+
+        $database = new \App\DB\Database('localhost', 'root', '', 'log');
+        $logger=new \App\Logger\DbLogger($database);
         $logger->log('data');
         
         $this->assertDatabaseHas('log', [
