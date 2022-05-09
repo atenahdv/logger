@@ -12,8 +12,14 @@ class DbLogger implements Logger
     }
 
     public function log(string $data){
-      $query = "INSERT INTO log (data, created_at) VALUES ($data, date('Y-m-d H:i:s'));";
-      $this->database->query($query);
+      $statement = $this->database->prepare('INSERT INTO log (data, created_at)
+      VALUES (:data, :created_at)');
+
+    $statement->execute([
+      'data' => $data,
+      'created_at' => date('Y-m-d H:i:s'),
+  ]);
+     
 
     }
 }
