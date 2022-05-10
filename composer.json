@@ -15,6 +15,7 @@
         "phpunit/phpunit": "^9"
     },
     "require": {
-        "league/container": "^4.2"
+        "league/container": "^4.2",
+        "mockery/mockery": "^1.5"
     }
 }
